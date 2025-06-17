@@ -102,6 +102,11 @@ vim.g.have_nerd_font = true
 vim.o.number = true
 -- set dark mode for gruvbox theme
 vim.o.background = 'dark'
+-- use spaces instead of tabs when indenting
+vim.o.expandtab = true
+vim.o.tabstop = 8
+vim.o.softtabstop = 2
+vim.o.shiftwidth = 2
 -- You can also add relative line numbers, to help with jumping.
 --  Experiment for yourself to see if you like it!
 -- vim.o.relativenumber = true
@@ -250,7 +255,7 @@ rtp:prepend(lazypath)
 require('lazy').setup({
   -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
   'NMAC427/guess-indent.nvim', -- Detect tabstop and shiftwidth automatically
-
+ 
   -- NOTE: Plugins can also be added by using a table,
   -- with the first argument being the link and the following
   -- keys can be used to configure plugin behavior/loading/etc.
