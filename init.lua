@@ -255,7 +255,7 @@ rtp:prepend(lazypath)
 require('lazy').setup({
   -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
   'NMAC427/guess-indent.nvim', -- Detect tabstop and shiftwidth automatically
- 
+
   -- NOTE: Plugins can also be added by using a table,
   -- with the first argument being the link and the following
   -- keys can be used to configure plugin behavior/loading/etc.
@@ -723,6 +723,7 @@ require('lazy').setup({
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
         'stylua', -- Used to format Lua code
+        'prettier',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
@@ -779,7 +780,12 @@ require('lazy').setup({
         -- python = { "isort", "black" },
         --
         -- You can use 'stop_after_first' to run the first available formatter from the list
+        html = { 'prettierd', 'prettier', stop_after_first = true },
         javascript = { 'prettierd', 'prettier', stop_after_first = true },
+        typescript = { 'prettierd', 'prettier', stop_after_first = true },
+        css = { 'prettierd', 'prettier', stop_after_first = true },
+        scss = { 'prettierd', 'prettier', stop_after_first = true },
+        json = { 'prettierd', 'prettier', stop_after_first = true },
       },
     },
   },
@@ -889,8 +895,21 @@ require('lazy').setup({
     --
     -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
     'ellisonleao/gruvbox.nvim',
+    opts = {
+      pallette_overrides = {},
+    },
     priority = 1000, -- Make sure to load this before all the other start plugins.
     config = function()
+      require('gruvbox').setup {
+        contrast = 'hard',
+        palette_overrides = {
+          dark0_hard = '#000000',
+          dark1 = '#111111',
+          -- dark2 = '#ffffff',
+          -- dark3 = '#000000',
+          dark4 = '#333333',
+        },
+      }
       -- Load the colorscheme here.
       vim.cmd.colorscheme 'gruvbox'
     end,
